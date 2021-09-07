@@ -2,11 +2,11 @@ import app from "./server.js"
 import mongodb from "mongodb"
 import dotenv from "dotenv"
 import RestaurantsDAO from "./dao/restaurantsDAO.js" // import file
-// import ReviewsDAO from "./dao/reviewsDAO.js"
+import ReviewsDAO from "./dao/reviewsDAO.js" // import file
 
 // 
 // Connect to DB, listen on port and init config
-// THIS IS BOILER PLATE MONGODB CONNECT
+// THIS IS BOILER PLATE MONGODB CONNECT --> Non boiler plate is await for the DAO files
 //
 
 dotenv.config() // configure environment vars 
@@ -31,7 +31,8 @@ MongoClient.connect(
     .then(async client => {
     
     await RestaurantsDAO.injectDB(client)
-    
+    await ReviewsDAO.injectDB(client)
+
       // start the webserver
     app.listen(port, () => { console.log(`listening on port ${port}`) })
   })
