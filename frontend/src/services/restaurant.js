@@ -10,7 +10,7 @@ class RestaurantDataService {
     }
     
     get(id) {
-        return http.get(`?id=${id}`);
+        return http.get(`/id/${id}`);
     }
     
     // qeuery is value of search term (which cuisine/name) or number (zip code)

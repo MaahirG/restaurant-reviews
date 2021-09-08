@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import RestaurantDataService from "../services/restaurant";
 import { Link } from "react-router-dom";
 
-
-// Idea: Get list of restaurants from db and display them
+// Front end functionality for homepage showing list of restaurants, get lists filtered and processed from db and display
+// using bootstrap prebuilt nav and divs
 
 const RestaurantsList = props => {
   
@@ -14,7 +14,7 @@ const RestaurantsList = props => {
   const [searchCuisine, setSearchCuisine ] = useState("");
   const [cuisines, setCuisines] = useState(["All Cuisines"]);
 
-  // Tell react to do something after render
+  // Telling React to run your “effect” function after flushing changes to the DOM (after render) in index.js
   useEffect(() => {
     retrieveRestaurants();
     retrieveCuisines();
