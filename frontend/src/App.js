@@ -46,8 +46,9 @@ function App() {
           {/* Link2: Link will either say login or logout (variable w/ternary operator) */}
           <li className="nav-item" >
             { user ? (
-
-              <a onClick={logout} className="nav-link" style={{cursor:'pointer'}}> {/*Run logout function on click*/}
+              
+              // Run logout function on click
+              <a onClick={logout} className="nav-link" style={{cursor:'pointer'}}>
                 Logout {user.name}
               </a>
             
