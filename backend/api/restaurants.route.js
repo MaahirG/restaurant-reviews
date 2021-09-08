@@ -5,7 +5,7 @@ import ReviewsCtrl from "./reviews.controller.js"
 const router = express.Router()
 
 // create the different routes that people can navigate to
-// controller file is what route uses 
+// routes defined in controller file
 router.route("/").get(RestaurantsCtrl.apiGetRestaurants)
 router.route("/id/:id").get(RestaurantsCtrl.apiGetRestaurantById)
 router.route("/cuisines").get(RestaurantsCtrl.apiGetRestaurantCuisines)

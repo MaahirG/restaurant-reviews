@@ -6,7 +6,7 @@ import RestaurantsDAO from "../dao/restaurantsDAO.js"
 
 export default class RestaurantsController {
 
-    // support for URL API calls
+  // support for URL API calls
   static async apiGetRestaurants(req, res, next) {
 
     // Get query in the URL - req.query ($ in URL) (google.com/api$request) and check if exists -> convert to int, else default val
@@ -36,6 +36,7 @@ export default class RestaurantsController {
     res.json(response)
   }
   
+  // get the specific restaurant information and a list of all reviews associated with that restaurant
   static async apiGetRestaurantById(req, res, next) {
     try {
       let id = req.params.id || {}
@@ -51,6 +52,7 @@ export default class RestaurantsController {
     }
   }
 
+  // get a list of all cuisines - user will have a drop down menu of all cuisines
   static async apiGetRestaurantCuisines(req, res, next) {
     try {
       let cuisines = await RestaurantsDAO.getCuisines()

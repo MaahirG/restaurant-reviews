@@ -1,6 +1,9 @@
-// import mongodb from "mongodb"
-// const ObjectId = mongodb.ObjectId
+import mongodb from "mongodb"
+const ObjectId = mongodb.ObjectId
 let restaurants // use var as reference to database
+
+
+// "DAO" - Data access object - This file abstracts/handles all DB related queries and formulation and returns to the controllers
 
 export default class RestaurantsDAO {    
     // NOTE: Class comprised of all async methods
@@ -18,7 +21,7 @@ export default class RestaurantsDAO {
     }
   }
 
-    // call to get a list of restaurants in the DB
+  // call to get a list of restaurants in the DB
   static async getRestaurants({ filters = null, page = 0, restaurantsPerPage = 20, } = {}) {
     
     let query
@@ -61,15 +64,15 @@ export default class RestaurantsDAO {
   // get the specific restaurant information and a list of all reviews associated with that restaurant
   static async getRestaurantByID(id) {
     try {
+
+      // create a mongodb pipeline to match different collections together - match the ID of a certain restaurant
       const pipeline = [
         {
-            $match: {
-                _id: new ObjectId(id),
-            },
+            $match: { _id: new ObjectId(id), },
         },
               {
                   $lookup: {
-                      from: "reviews",
+                      from: "reviews", // from the reviews collection in the db, find all reviews that match a restaurant id
                       let: {
                           id: "$_id",
                       },
@@ -87,7 +90,7 @@ export default class RestaurantsDAO {
                               },
                           },
                       ],
-                      as: "reviews",
+                      as: "reviews", // set all such reviews in the collection as "reviews" as the result
                   },
               },
               {
